@@ -7,6 +7,7 @@ using UnityEngine;
 public class Hero : ScriptableObject
 {
     public string name;
+    public Sprite Icon;
     public string URL;
     public int difficulty;
 }

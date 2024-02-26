@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -13,11 +14,14 @@ public class HeroGenerator : MonoBehaviour
 
     public int currentDif;
 
+    public int currentHeroID;
+
     public void GenerateNewHero()
     {
         int randomID = Random.Range(0, Heroes.Length);
-        getImage(Heroes[randomID].URL);
+        HeroImage.sprite = Heroes[randomID].Icon;
         currentDif = Heroes[randomID].difficulty;
+        currentHeroID = randomID;
         GenerateTalentTree();
     }
 
@@ -37,26 +41,26 @@ public class HeroGenerator : MonoBehaviour
         }
     }
 
-    public void getImage(string URL)
-    {
-        StartCoroutine(getImageFromURL(URL));
-    }
+    //public void getImage(string URL)
+    //{
+    //    StartCoroutine(getImageFromURL(URL));
+    //}
 
 
 
-    IEnumerator getImageFromURL(string URL_)
-    {
-        UnityWebRequest request = UnityWebRequestTexture.GetTexture(URL_);
-        yield return request.SendWebRequest();
-        if (request.isNetworkError || request.isHttpError)
-            Debug.Log(request.error);
-        else
-        {
-            Texture2D rawImage = ((DownloadHandlerTexture)request.downloadHandler).texture;
-            Sprite imageForSprite = Sprite.Create(rawImage, new Rect(0, 0, rawImage.width, rawImage.height), Vector2.zero);
-            HeroImage.sprite = imageForSprite;
-
-        }
-    }
+    //IEnumerator getImageFromURL(string URL_)
+    //{
+    //    UnityWebRequest request = UnityWebRequestTexture.GetTexture(URL_);
+    //    yield return request.SendWebRequest();
+    //    if (request.isNetworkError || request.isHttpError)
+    //        Debug.Log(request.error);
+    //    else
+    //   {
+    //        Texture2D rawImage = ((DownloadHandlerTexture)request.downloadHandler).texture;
+    //        Sprite imageForSprite = Sprite.Create(rawImage, new Rect(0, 0, rawImage.width, rawImage.height), Vector2.zero);
+    //        HeroImage.sprite = imageForSprite;
+    //
+    //    }
+    //}
 
 }

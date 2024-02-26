@@ -8,5 +8,5 @@ public class SmallItem : ScriptableObject
     public string name;
     public string URL;
     public int cost;
-    public bool isItemForCore;
+    public Sprite Icon;
 }
